@@ -5,28 +5,65 @@ namespace Sven\Moretisan\MakeView;
 class ViewCreator extends ViewHelper
 {
     /**
-     * The full path to the view to create.
+     * Create a new view.
      *
-     * @var string
+     * @param  string $name      The name of the view.
+     * @param  string $extension The extension the view should have.
+     * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    protected $fullPath;
-
-    /**
-     * Instantiate the ViewCreator.
-     *
-     * @param string $fullPath Absolute path to the views folder.
-     */
-    public function __construct($fullPath)
+    public function create(string $name, string $extension = '.blade.php')
     {
-        $this->fullPath = $fullPath;
-    }
+        $filename = $this->createFileName($name, $extension);
 
-    public function create(string $name)
-    {
-        $this->parseName($name);
+        $this->createFile($filename);
 
         return $this;
     }
 
+    /**
+     * Extend the view we're working with.
+     *
+     * @param  string $name Name of view to extend.
+     * @return \Sven\Moretisan\MakeView\ViewCreator
+     */
+    public function extends(string $name)
+    {
+        $file = $this->pathTo($this->workingWith);
+        $contents = $this->getStub('extends', [$name]);
 
+        $this->appendTo($file, $contents);
+
+        return $this;
+    }
+
+    /**
+     * Add a section to the view.
+     *
+     * @param  string $name Name of section to create.
+     * @return \Sven\Moretisan\MakeView\ViewCreator
+     */
+    public function section(string $name)
+    {
+        $file = $this->pathTo($this->workingWith);
+        $contents = $this->getStub('section', [$name]);
+
+        $this->appendTo($file, $contents);
+
+        return $this;
+    }
+
+    /**
+     * Create multiple sections in the view.
+     *
+     * @param  array  $sections Names of the sections to create.
+     * @return \Sven\Moretisan\MakeView\ViewCreator
+     */
+    public function sections(array $sections)
+    {
+        foreach ($sections as $section) {
+            $this->section($section);
+        }
+
+        return $this;
+    }
 }

@@ -2,18 +2,20 @@
     "name": "sven/moretisan",
     "autoload": {
         "psr-4": {
-            "Sven/Moretisan\\": "src/"
+            "Sven\\Moretisan\\": "src/"
         }
     },
     "require": {
-        "laravel/framework": "^5.0"
+        "laravel/framework": "^5.0",
+        "illuminate/support": "^5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "^4.8 || ^5.0",
+        "orchestra/testbench": "^3.0"
     },
     "autoload-dev": {
         "psr-4": {
-            "Sven/Moretisan\\Tests\\": "tests/"
+            "Sven\\Moretisan\\Tests\\": "tests/"
         }
     }
 }
