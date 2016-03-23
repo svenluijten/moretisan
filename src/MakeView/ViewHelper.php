@@ -135,7 +135,7 @@ class ViewHelper
      * @param  string $contents Contents to append to the file.
      * @return void
      */
-    protected function appendTo(string $file, string $contents)
+    protected function appendTo($file, $contents)
     {
         file_put_contents($file, $contents, FILE_APPEND);
     }
