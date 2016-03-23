@@ -42,18 +42,18 @@ class MakeViewCommand extends Command
             $this->option('extension')
         );
 
-        if ( ! is_null( $this->argument('extends') )) {
-            $view = $view->extends($this->argument('extends'));
+        if ( ! is_null( $this->option('extends') )) {
+            $view = $view->extends($this->option('extends'));
         }
 
-        if ( ! is_null( $this->argument('sections') )) {
+        if ( ! is_null( $this->option('sections') )) {
             $view = $view->sections(
-                explode(',', $this->argument('sections'));
+                explode(',', $this->option('sections'))
             );
         }
 
         return $this->info(printf(
-            'Successfully created the view \'%s\'!',
+            "Successfully created the view '%s'!",
             $this->argument('name')
         ));
     }
