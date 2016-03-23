@@ -13,12 +13,12 @@ class MoretisanServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app['view:make'] = $this->app->share(function () {
+        $this->app['make:view'] = $this->app->share(function () {
             return new Commands\MakeViewCommand();
         });
 
         $this->commands(
-            'view:make'
+            'make:view'
         );
     }
 
