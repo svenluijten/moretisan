@@ -51,7 +51,7 @@ class ViewCreatorTest extends BaseTest
         $this->view->create('index')->section('content');
 
         $this->assertEquals(
-            '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
+            PHP_EOL . '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
             file_get_contents(__DIR__ . '/assets/index.blade.php')
         );
     }
@@ -63,14 +63,14 @@ class ViewCreatorTest extends BaseTest
         $this->view->create('about')->section('content')->section('scripts');
 
         $this->assertEquals(
-            '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL .
-            '@section(\'scripts\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
+            PHP_EOL . '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL .
+            PHP_EOL . '@section(\'scripts\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
             file_get_contents(__DIR__ . '/assets/index.blade.php')
         );
 
         $this->assertEquals(
-            '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL .
-            '@section(\'scripts\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
+            PHP_EOL . '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL .
+            PHP_EOL . '@section(\'scripts\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
             file_get_contents(__DIR__ . '/assets/about.blade.php')
         );
     }
@@ -82,7 +82,7 @@ class ViewCreatorTest extends BaseTest
 
         $this->assertEquals(
             '@extends(\'app\')' . PHP_EOL .
-            '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
+            PHP_EOL . '@section(\'content\')' . PHP_EOL . PHP_EOL . '@endsection' . PHP_EOL,
             file_get_contents(__DIR__ . '/assets/index.blade.php')
         );
     }
