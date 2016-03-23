@@ -37,7 +37,7 @@ class ViewCreatorTest extends BaseTest
     /** @test */
     public function it_extends_a_view()
     {
-        $this->view->create('index')->extends('layout');
+        $this->view->create('index')->extend('layout');
 
         $this->assertEquals(
             '@extends(\'layout\')' . PHP_EOL,
@@ -78,7 +78,7 @@ class ViewCreatorTest extends BaseTest
     /** @test */
     public function it_extends_a_view_and_has_a_section()
     {
-        $this->view->create('index')->extends('app')->section('content');
+        $this->view->create('index')->extend('app')->section('content');
 
         $this->assertEquals(
             '@extends(\'app\')' . PHP_EOL .
