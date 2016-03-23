@@ -1,4 +1,4 @@
-![flex-env](https://cloud.githubusercontent.com/assets/11269635/12526309/85a09084-c16c-11e5-8099-cddf6f8fce78.jpg)
+![moretisan](https://cloud.githubusercontent.com/assets/11269635/13992937/51d9dc9c-f11e-11e5-8009-4ea275193d6d.jpg)
 
 # Moretisan
 
@@ -75,7 +75,7 @@ file at `resources/views/index.blade.php`:
 ```
 
 Lastly, the `--directory` and `--extension` options can be used to override defaults.
-I'll assume you get the basic idea on how to use those ;)
+I'll assume you get the basic idea on how those work. ;)
 
 ## Contributing
 All contributions (in the form on pull requests, issues and feature-requests) are
