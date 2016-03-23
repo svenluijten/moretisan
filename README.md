@@ -43,39 +43,7 @@ Next, add the `MoretisanServiceProvider` to your `providers` array in `config/ap
 The commands in this package should now be registered. Simply run `php artisan`,
 and you will see all commands in the list.
 
-### make:view
-
-```bash
-$ php artisan make:view {name} [--extends] [--sections] [--directory=resources/views/] [--extension=.blade.php]
-```
-
-Run this command to create a new view. The name can contain periods (`.`) to dictate
-the folder structure. For instance, `php artisan make:view pages.index` would create
-a folder `resources/views/pages/`, and places the `index.blade.php` view in there.
-
-Use the `--extends` option to extend a view. For example, `php artisan make:view index --extends=app`
-would create a view (at `resources/views/index.blade.php`) that looks like this:
-
-```blade
-@extends('app')
-```
-
-The `--sections` option can be used to define sections in your blade template.
-`php artisan make:view index --sections=content,scripts` generates the following
-file at `resources/views/index.blade.php`:
-
-```blade
-@section('content')
-
-@endsection
-
-@section('scripts')
-
-@endsection
-```
-
-Lastly, the `--directory` and `--extension` options can be used to override defaults.
-I'll assume you get the basic idea on how those work. ;)
+**More in-depth documentation can be found on the [wiki](wiki)**
 
 ## Contributing
 All contributions (in the form on pull requests, issues and feature-requests) are
