@@ -18,7 +18,7 @@ class MoretisanServiceProvider extends ServiceProvider
         });
 
         $this->commands(
-            'make:view'
+            'view:make'
         );
     }
 
