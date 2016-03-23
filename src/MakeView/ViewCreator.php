@@ -11,7 +11,7 @@ class ViewCreator extends ViewHelper
      * @param  string $extension The extension the view should have.
      * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    public function create(string $name, $extension = '.blade.php')
+    public function create($name, $extension = '.blade.php')
     {
         $filename = $this->createFileName($name, $extension);
 
@@ -26,7 +26,7 @@ class ViewCreator extends ViewHelper
      * @param  string $name Name of view to extend.
      * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    public function extend(string $name)
+    public function extend($name)
     {
         $file = $this->pathTo($this->workingWith);
         $contents = $this->getStub('extends', [$name]);
@@ -42,7 +42,7 @@ class ViewCreator extends ViewHelper
      * @param  string $name Name of section to create.
      * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    public function section(string $name)
+    public function section($name)
     {
         $file = $this->pathTo($this->workingWith);
         $contents = $this->getStub('section', [$name]);

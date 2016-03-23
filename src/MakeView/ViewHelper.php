@@ -37,7 +37,7 @@ class ViewHelper
      * @param  string $extension The extension the view should have.
      * @return string
      */
-    protected function createFileName(string $name, string $extension)
+    protected function createFileName($name, $extension)
     {
         if (Str::contains($name, '.')) {
             $fragments = explode('.', $name);
@@ -76,7 +76,7 @@ class ViewHelper
      * @param  string $extension The extension to parse.
      * @return string
      */
-    protected function parseExtension(string $extension)
+    protected function parseExtension($extension)
     {
         return Str::startsWith($extension, '.') ? $extension : ".$extension";
     }
@@ -87,7 +87,7 @@ class ViewHelper
      * @param  string $filename The name of the file to create.
      * @return void
      */
-    protected function createFile(string $filename)
+    protected function createFile($filename)
     {
         file_put_contents($this->pathTo($filename), '');
     }
@@ -98,7 +98,7 @@ class ViewHelper
      * @param  string $filename The name of the file you want the path to.
      * @return string
      */
-    protected function pathTo(string $filename, $concat = false)
+    protected function pathTo($filename, $concat = false)
     {
         if ($concat) {
             $this->fullPath .= '/' . $filename;
@@ -117,7 +117,7 @@ class ViewHelper
      * @param  array  $data Data to replace the wildcards with.
      * @return string
      */
-    protected function getStub(string $name, $data = [])
+    protected function getStub($name, $data = [])
     {
         $stub = file_get_contents(__DIR__ . '/stubs/'. $name);
 
