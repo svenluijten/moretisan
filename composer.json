@@ -1,10 +1,15 @@
 {
     "name": "sven/moretisan",
-    "autoload": {
-        "psr-4": {
-            "Sven\\Moretisan\\": "src/"
+    "description": "Add more artisan commands to your Laravel installation.",
+    "keywords": ["artisan", "laravel", "illuminate", "commands", "extra"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sven Luijten",
+            "email": "svenluijten@outlook.com",
+            "homepage": "https://svenluijten.com"
         }
-    },
+    ],
     "require": {
         "laravel/framework": "^5.0",
         "illuminate/support": "^5.0"
@@ -12,6 +17,11 @@
     "require-dev": {
         "phpunit/phpunit": "^4.8 || ^5.0",
         "orchestra/testbench": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sven\\Moretisan\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
