@@ -22,8 +22,9 @@ class ViewHelper
 
     protected function recursivelyCreateFolders(array $folders, $filename)
     {
+        // In case the array of folders to create is empty,
+        // we will simply return the filename. We don't
+        // have need for any more folders after this.
         if (empty($folders)) return $filename;
-
-        $file = array_pop($folders);
     }
 }
