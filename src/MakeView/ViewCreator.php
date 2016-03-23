@@ -26,7 +26,7 @@ class ViewCreator extends ViewHelper
      * @param  string $name Name of view to extend.
      * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    public function extends(string $name)
+    public function extend(string $name)
     {
         $file = $this->pathTo($this->workingWith);
         $contents = $this->getStub('extends', [$name]);
