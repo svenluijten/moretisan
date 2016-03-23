@@ -43,7 +43,7 @@ Next, add the `MoretisanServiceProvider` to your `providers` array in `config/ap
 The commands in this package should now be registered. Simply run `php artisan`,
 and you will see all commands in the list.
 
-**More in-depth documentation can be found on the [wiki](wiki)**
+**More in-depth documentation can be found on the [wiki](../../wiki).**
 
 ## Contributing
 All contributions (in the form on pull requests, issues and feature-requests) are
