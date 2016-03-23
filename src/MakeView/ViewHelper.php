@@ -98,7 +98,7 @@ class ViewHelper
      * @param  string $filename The name of the file you want the path to.
      * @return string
      */
-    protected function pathTo(string $filename, bool $concat = false)
+    protected function pathTo(string $filename, $concat = false)
     {
         if ($concat) {
             $this->fullPath .= '/' . $filename;
@@ -117,7 +117,7 @@ class ViewHelper
      * @param  array  $data Data to replace the wildcards with.
      * @return string
      */
-    protected function getStub(string $name, array $data = [])
+    protected function getStub(string $name, $data = [])
     {
         $stub = file_get_contents(__DIR__ . '/stubs/'. $name);
 

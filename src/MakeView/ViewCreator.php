@@ -11,7 +11,7 @@ class ViewCreator extends ViewHelper
      * @param  string $extension The extension the view should have.
      * @return \Sven\Moretisan\MakeView\ViewCreator
      */
-    public function create(string $name, string $extension = '.blade.php')
+    public function create(string $name, $extension = '.blade.php')
     {
         $filename = $this->createFileName($name, $extension);
 
