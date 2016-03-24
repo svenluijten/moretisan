@@ -7,6 +7,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Code Climate][ico-codeclimate]][link-codeclimate]
+[![Scrutinizer Coverage]][link-coverage]
 
 This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
@@ -68,3 +69,4 @@ welcomed and will be properly credited.
 [link-downloads]: https://packagist.org/packages/sven/moretisan
 [link-travis]: https://travis-ci.org/svenluijten/moretisan
 [link-codeclimate]: https://codeclimate.com/github/svenluijten/moretisan
+[link-coverage]: https://img.shields.io/scrutinizer/coverage/g/svenluijten/moretisan.svg
