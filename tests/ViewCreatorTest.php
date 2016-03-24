@@ -27,7 +27,15 @@ class ViewCreatorTest extends BaseTest
     /** @test */
     public function it_adds_a_file_in_an_existing_folder()
     {
-        $this->view->create('pages.about');
+        $v1 = $this->getView();
+        $v2 = $this->getView();
+
+        $v1->create('pages.index');
+        $v2->create('pages.about');
+
+        $this->assertTrue(
+            file_exists(__DIR__ . '/assets/pages/index.blade.php')
+        );
 
         $this->assertTrue(
             file_exists(__DIR__ . '/assets/pages/about.blade.php')

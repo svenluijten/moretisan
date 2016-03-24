@@ -19,9 +19,9 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
      */
     public function setUp()
     {
-        $this->view = new ViewCreator(__DIR__ . '/assets');
-
         mkdir(__DIR__ . '/assets');
+
+        $this->view = new ViewCreator(__DIR__ . '/assets');
     }
 
     /**
@@ -38,5 +38,10 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         }
 
         rmdir($directory);
+    }
+
+    public function getView()
+    {
+        return new ViewCreator(__DIR__ . '/assets');
     }
 }
