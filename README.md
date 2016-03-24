@@ -6,6 +6,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
+[![Code Climate][ico-codeclimate]][link-codeclimate]
 
 This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
@@ -61,7 +62,9 @@ welcomed and will be properly credited.
 [ico-license]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/sven/moretisan.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/svenluijten/moretisan.svg?style=flat-square
+[ico-codeclimate]: https://img.shields.io/codeclimate/github/svenluijten/moretisan.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/sven/moretisan
 [link-downloads]: https://packagist.org/packages/sven/moretisan
 [link-travis]: https://travis-ci.org/svenluijten/moretisan
+[link-codeclimate]: https://codeclimate.com/github/svenluijten/moretisan
