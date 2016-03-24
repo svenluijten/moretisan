@@ -1,6 +1,6 @@
 {
     "name": "sven/moretisan",
-    "description": "Add more artisan commands to your Laravel installation.",
+    "description": "Add more artisan commands to your Laravel projects.",
     "keywords": ["artisan", "laravel", "illuminate", "commands", "extra"],
     "license": "MIT",
     "authors": [

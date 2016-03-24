@@ -7,7 +7,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 
-This package adds helpful artisan commands to your Laravel installation. More are
+This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
 
 ## Installation
