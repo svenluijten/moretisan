@@ -7,7 +7,7 @@
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
 [![Code Climate][ico-codeclimate]][link-codeclimate]
-[![Scrutinizer Code Quality][ico-quality]][link-quality]
+[![Code Quality][ico-quality]][link-quality]
 
 This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
@@ -64,7 +64,7 @@ welcomed and will be properly credited.
 [ico-downloads]: https://img.shields.io/packagist/dt/sven/moretisan.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/svenluijten/moretisan.svg?style=flat-square
 [ico-codeclimate]: https://img.shields.io/codeclimate/github/svenluijten/moretisan.svg?style=flat-square
-[ico-quality]: https://scrutinizer-ci.com/g/svenluijten/moretisan/badges/quality-score.png?b=master
+[ico-quality]: https://img.shields.io/scrutinizer/g/svenluijten/moretisan.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/sven/moretisan
 [link-downloads]: https://packagist.org/packages/sven/moretisan
