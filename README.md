@@ -66,7 +66,7 @@ welcomed and will be properly credited.
 [ico-travis]: https://img.shields.io/travis/svenluijten/moretisan.svg?style=flat-square
 [ico-codeclimate]: https://img.shields.io/codeclimate/github/svenluijten/moretisan.svg?style=flat-square
 [ico-quality]: https://img.shields.io/scrutinizer/g/svenluijten/moretisan.svg?style=flat-square
-[ico-insight]: https://img.shields.io/sensiolabs/i/45afb680-d4e6-4e66-93ea-bcfa79eb8a87.svg?style=flat-square
+[ico-insight]: https://img.shields.io/sensiolabs/i/533b9be4-df91-4038-b845-828222480329.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/sven/moretisan
 [link-downloads]: https://packagist.org/packages/sven/moretisan
