@@ -8,6 +8,7 @@
 [![Build Status][ico-travis]][link-travis]
 [![Code Climate][ico-codeclimate]][link-codeclimate]
 [![Code Quality][ico-quality]][link-quality]
+[![SensioLabs Insight][ico-insight]][link-insight]
 
 This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
@@ -65,9 +66,11 @@ welcomed and will be properly credited.
 [ico-travis]: https://img.shields.io/travis/svenluijten/moretisan.svg?style=flat-square
 [ico-codeclimate]: https://img.shields.io/codeclimate/github/svenluijten/moretisan.svg?style=flat-square
 [ico-quality]: https://img.shields.io/scrutinizer/g/svenluijten/moretisan.svg?style=flat-square
+[ico-insight]: https://img.shields.io/sensiolabs/i/45afb680-d4e6-4e66-93ea-bcfa79eb8a87.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/sven/moretisan
 [link-downloads]: https://packagist.org/packages/sven/moretisan
 [link-travis]: https://travis-ci.org/svenluijten/moretisan
 [link-codeclimate]: https://codeclimate.com/github/svenluijten/moretisan
 [link-quality]: https://scrutinizer-ci.com/g/svenluijten/moretisan/?branch=master
+[link-insight]: https://insight.sensiolabs.com/projects/533b9be4-df91-4038-b845-828222480329
