@@ -3,7 +3,7 @@
 namespace Sven\Moretisan\Commands;
 
 use Illuminate\Console\Command;
-use Sven\Moretisan\MakeView\ViewCreator;
+use Sven\Moretisan\MakeView\MakeView;
 
 class MakeViewCommand extends Command
 {
@@ -13,7 +13,7 @@ class MakeViewCommand extends Command
      * @var string
      */
     protected $signature = 'make:view
-                           {name : The name of the view to create}
+                           {name : The name of the view to create.}
                            {--extends= : What \'master\' view should be extended?}
                            {--sections= : A comma-separated list of sections to create.}
                            {--directory=resources/views/ : The directory where your views are stored.}
@@ -33,28 +33,17 @@ class MakeViewCommand extends Command
      */
     public function handle()
     {
-        $view = new ViewCreator(
+        $view = new MakeView(
             base_path($this->option('directory'))
         );
 
-        $view = $view->create(
-            $this->argument('name'),
-            $this->option('extension')
-        );
+        try {
+            $view->create($name, $extension)
+                 ->extend('app')
+                 ->sections('content,scripts')
 
-        if ( ! is_null( $this->option('extends') )) {
-            $view = $view->extend($this->option('extends'));
+        } catch (Exception $e) {
+
         }
-
-        if ( ! is_null( $this->option('sections') )) {
-            $view->sections(
-                explode(',', $this->option('sections'))
-            );
-        }
-
-        return $this->info(printf(
-            "Successfully created the view '%s'!",
-            $this->argument('name')
-        ));
     }
 }
