@@ -2,7 +2,7 @@
 
 namespace Sven\Moretisan\Tests;
 
-class ViewCreatorTest extends BaseTest
+class ViewCreatorTest extends AbstractTestCase
 {
     /** @test */
     public function it_creates_a_file()

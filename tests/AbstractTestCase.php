@@ -5,14 +5,28 @@ namespace Sven\Moretisan\Tests;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use Sven\Moretisan\MakeView\ViewCreator;
+use Sven\Moretisan\MoretisanServiceProvider;
+use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
-abstract class BaseTest extends \Orchestra\Testbench\TestCase
+abstract class AbstractTestCase extends AbstractPackageTestCase
 {
     /**
      * The ViewCreator instance.
      * @var \Sven\Moretisan\MakeView\ViewCreator
      */
     protected $view;
+
+    /**
+     * Get the service provider class.
+     *
+     * @param \Illuminate\Contracts\Foundation\Application $app
+     *
+     * @return string
+     */
+    protected function getServiceProviderClass($app)
+    {
+        return MoretisanServiceProvider::class;
+    }
 
     /**
      * Set up the testing suite.
