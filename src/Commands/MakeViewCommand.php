@@ -47,7 +47,7 @@ class MakeViewCommand extends Command
         }
 
         if ( ! is_null( $this->option('sections') )) {
-            $view = $view->sections(
+            $view->sections(
                 explode(',', $this->option('sections'))
             );
         }
