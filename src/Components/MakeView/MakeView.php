@@ -40,7 +40,7 @@ class MakeView
      */
     public function create($name, $extension = '.blade.php')
     {
-        $fragments = $this->parseName($name);
+        $fragments = $this->normalizeToArray($name, '.');
 
         $filename = array_pop($fragments);
 
@@ -74,7 +74,7 @@ class MakeView
      */
     public function sections($sections)
     {
-        foreach ($this->parseSections($sections) as $section) {
+        foreach ($this->normalizeToArray($sections, ',') as $section) {
             $stub = $this->getStub('section', [$section]);
 
             $this->appendToFile($stub);
@@ -95,16 +95,17 @@ class MakeView
     }
 
     /**
-     * Normalize the sections to an array.
+     * Normalize a string to an array.
      *
-     * @param  string $sections Comma-separated list of sections.
-     * @return array
+     * @param  string $value     The value to normalize.
+     * @param  string $delimiter Delimiter to explode by.
+     * @return array             Normalized array of values.
      */
-    protected function parseSections($sections)
+    protected function normalizeToArray($value, $delimiter)
     {
-        if (! Str::contains($sections, ',')) return [$sections];
+        if (! Str::contains($value, $delimiter)) return [$value];
 
-        return explode(',', $sections);
+        return explode($delimiter, $value);
     }
 
     /**
@@ -123,19 +124,6 @@ class MakeView
         }
 
         return $stub;
-    }
-
-    /**
-     * Normalize the name of the view to an array.
-     *
-     * @param  string $name Dot-notated name of the view to create.
-     * @return array
-     */
-    protected function parseName($name)
-    {
-        if (! Str::contains($name, '.')) return [$name];
-
-        return explode('.', $name);
     }
 
     /**
