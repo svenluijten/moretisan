@@ -8,13 +8,6 @@ use Sven\Moretisan\Shared\FileInteractor;
 class MakeView extends FileInteractor
 {
     /**
-     * Full path to the file.
-     *
-     * @var string
-     */
-    protected $file;
-
-    /**
      * Create a new view file.
      *
      * @param  string $name      The name of the view to create.

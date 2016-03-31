@@ -23,6 +23,13 @@ class FileInteractor
     protected $base;
 
     /**
+     * Full path to the file.
+     *
+     * @var string
+     */
+    protected $file;
+
+    /**
      * Instantiate the FileInteractor.
      *
      * @param string $path Base path to files to work with.
