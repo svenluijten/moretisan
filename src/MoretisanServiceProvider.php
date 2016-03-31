@@ -17,8 +17,13 @@ class MoretisanServiceProvider extends ServiceProvider
             return new Commands\MakeViewCommand();
         });
 
+        $this->app['scrap:view'] = $this->app->share(function () {
+            return new Commands\ScrapViewCommand();
+        });
+
         $this->commands(
-            'make:view'
+            'make:view',
+            'scrap:view'
         );
     }
 

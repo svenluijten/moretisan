@@ -46,9 +46,10 @@ Next, add the `MoretisanServiceProvider` to your `providers` array in `config/ap
 The commands in this package should now be registered. Simply run `php artisan`,
 and you will see all commands in the list.
 
-Currently, the package installs the following command(s):
+Currently, the package provides the following command(s):
 
 - `php artisan make:view`
+- `php artisan scrap:view`
 
 **More in-depth documentation can be found on the [wiki](../../wiki).**
 
