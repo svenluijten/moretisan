@@ -26,7 +26,7 @@ Alternatively, add the package to your dev dependencies in `composer.json` and r
 ```json
 {
     "require": {
-        "sven/moretisan": "^1.0"
+        "sven/moretisan": "^2.0"
     }
 }
 ```
