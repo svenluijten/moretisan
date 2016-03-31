@@ -3,7 +3,7 @@
 namespace Sven\Moretisan\Commands;
 
 use Illuminate\Console\Command;
-use Sven\Moretisan\MakeView\ViewCreator;
+use Sven\Moretisan\MakeView\MakeView;
 
 class MakeViewCommand extends Command
 {
@@ -13,7 +13,9 @@ class MakeViewCommand extends Command
      * @var string
      */
     protected $signature = 'make:view
-                           {name : The name of the view to create}
+                           {name : The name of the view to create.}
+                           {--resource : Should we create a RESTful resource?}
+                           {--verbs= : The verbs that should be used for the resource.}
                            {--extends= : What \'master\' view should be extended?}
                            {--sections= : A comma-separated list of sections to create.}
                            {--directory=resources/views/ : The directory where your views are stored.}
@@ -33,28 +35,29 @@ class MakeViewCommand extends Command
      */
     public function handle()
     {
-        $view = new ViewCreator(
+        $view = new MakeView(
             base_path($this->option('directory'))
         );
 
-        $view = $view->create(
-            $this->argument('name'),
-            $this->option('extension')
-        );
+        $name      = $this->argument('name');
+        $extension = $this->option('extension');
+        $extend    = $this->option('extends');
+        $sections  = $this->option('sections');
+        $resource  = $this->option('resource');
+        $verbs     = $this->option('verbs');
 
-        if ( ! is_null( $this->option('extends') )) {
-            $view = $view->extend($this->option('extends'));
+        try {
+            if ($resource) {
+                $view->resource($name, $verbs, $extension);
+
+                return $this->info("Resource [$name] successfully created");
+            }
+
+            $view->create($name, $extension)->extend($extend)->sections($sections);
+
+            return $this->info("View [$name] successfully created");
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
         }
-
-        if ( ! is_null( $this->option('sections') )) {
-            $view->sections(
-                explode(',', $this->option('sections'))
-            );
-        }
-
-        return $this->info(printf(
-            "Successfully created the view '%s'!",
-            $this->argument('name')
-        ));
     }
 }
