@@ -37,13 +37,19 @@ class MakeViewCommand extends Command
             base_path($this->option('directory'))
         );
 
+        $name      = $this->argument('name');
+        $extension = $this->option('extension');
+        $extend    = $this->option('extends');
+        $sections  = $this->option('sections');
+
         try {
             $view->create($name, $extension)
-                 ->extend('app')
-                 ->sections('content,scripts')
+                 ->extend($extend)
+                 ->sections($sections);
 
-        } catch (Exception $e) {
-
+            return $this->info("View [$name] successfully created");
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage());
         }
     }
 }

@@ -1,55 +1,200 @@
 <?php
 
-namespace Sven\Moretisan\MakeView;
+namespace Sven\Moretisan\Components\MakeView;
 
-use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Sven\Moretisan\Exceptions\FileAlreadyExists;
 
 class MakeView
 {
+    /**
+     * Full path where the file to create should be located.
+     *
+     * @var string
+     */
+    protected $path;
+
+    /**
+     * Full path to the file.
+     *
+     * @var string
+     */
+    protected $file;
+
+    /**
+     * Instantiate the MakeView component.
+     *
+     * @param string $path Path to create the views in.
+     */
+    public function __construct($path)
+    {
+        $this->path = realpath($path);
+    }
+
     /**
      * Create a new view file.
      *
      * @param  string $name      The name of the view to create.
      * @param  string $extension The extension to give the view.
-     * @return \Sven\Moretisan\MakeView\MakeView
+     * @return \Sven\Moretisan\Components\MakeView\MakeView
      */
-    public function create($name, $extension)
+    public function create($name, $extension = '.blade.php')
     {
-        // If there are dots in the name, parse it to a full path.
-        $fragments = $this->parseName($name); // ['pages', 'index']
+        $fragments = $this->parseName($name);
 
-        // Get the name of the file to create.
-        $nameOfFileToCreate = array_pop($fragments);
-        // $fragments: ['pages']
+        $filename = array_pop($fragments);
 
-        // Create directories based on the name.
         $this->createFolders($fragments);
 
+        $this->makeFile($filename, $extension);
 
-        $this->parseExtension($nameOfFileToCreate);
-
-        // Build up the full path (including extension)
-        $name = $this->buildName($name, $extension);
-
-        // Create the view.
+        return $this;
     }
 
-    public function parseName($name)
+    /**
+     * Extend a layout file.
+     *
+     * @param  string $name The name of the file to extend.
+     * @return \Sven\Moretisan\Components\MakeView\MakeView
+     */
+    public function extend($name)
     {
-        if (! \Illuminate\Support\Str::contains('.', $name)) return $name;
+        $this->appendToFile(
+            $this->getStub('extend', [$name])
+        );
+
+        return $this;
+    }
+
+    /**
+     * Add sections to the file.
+     *
+     * @param  string $sections Comma-separated list of sections to add.
+     * @return \Sven\Moretisan\Components\MakeView\MakeView
+     */
+    public function sections($sections)
+    {
+        foreach ($this->parseSections($sections) as $section) {
+            $stub = $this->getStub('section', [$section]);
+
+            $this->appendToFile($stub);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Append to the current file.
+     *
+     * @param  string $content Content to append.
+     * @return void
+     */
+    protected function appendToFile($content)
+    {
+        file_put_contents($this->file, $content,FILE_APPEND);
+    }
+
+    /**
+     * Normalize the sections to an array.
+     *
+     * @param  string $sections Comma-separated list of sections.
+     * @return array
+     */
+    protected function parseSections($sections)
+    {
+        if (! Str::contains($sections, ',')) return [$sections];
+
+        return explode(',', $sections);
+    }
+
+    /**
+     * Get a stub by name and replace optional parameters.
+     *
+     * @param  string $name   Name of the stub.
+     * @param  array  $params Parameters to replace in the stub.
+     * @return string         Contents of the stub.
+     */
+    protected function getStub($name, $params = [])
+    {
+        $stub = file_get_contents(__DIR__.'/stubs/'.$name.'.stub');
+
+        foreach ($params as $param) {
+            $stub = Str::replaceFirst('*', $param, $stub);
+        }
+
+        return $stub;
+    }
+
+    /**
+     * Normalize the name of the view to an array.
+     *
+     * @param  string $name Dot-notated name of the view to create.
+     * @return array
+     */
+    protected function parseName($name)
+    {
+        if (! Str::contains($name, '.')) return [$name];
 
         return explode('.', $name);
     }
 
-    protected function createFolders(array $folders)
+    /**
+     * Recursively create folders.
+     *
+     * @param  array  $folders Folders to create inside each other.
+     * @return void
+     */
+    protected function createFolders($folders)
     {
-        if (emtpy($folders)) return;
+        if (empty($folders)) return;
 
-        $folders = new Collection($folders);
+        $path = $this->addToPath( array_pop($folders) );
 
-        // $this->createFolder($folders->pop());
-        mkdir($folders->pop());
+        if (! is_dir($path)) mkdir($path);
 
-        $this->createFolders($folders);
+        return $this->createFolders($folders);
+    }
+
+    /**
+     * Add given folder to the path property.
+     *
+     * @param string $folder The folder to add to the path.
+     */
+    protected function addToPath($folder)
+    {
+        $this->path .= "/$folder";
+
+        return $this->path;
+    }
+
+    /**
+     * Create a file from the filename and extension.
+     *
+     * @param  string $filename  The name of the file.
+     * @param  string $extension The extension of the file.
+     * @return void
+     */
+    protected function makeFile($filename, $extension)
+    {
+        $extension = $this->parseExtension($extension);
+
+        $this->file = $this->path . '/' . $filename . $extension;
+
+        if (file_exists($this->file)) {
+            throw new FileAlreadyExists("The file at [$this->file] already exists.");
+        }
+
+        file_put_contents($this->file, '');
+    }
+
+    /**
+     * Normalize the extension so it starts with a period.
+     *
+     * @param  string $extension The extension to normalize.
+     * @return string
+     */
+    protected function parseExtension($extension)
+    {
+        return Str::startsWith($extension, '.') ? $extension : ".$extension";
     }
 }

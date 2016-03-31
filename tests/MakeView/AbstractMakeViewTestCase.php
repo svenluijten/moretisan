@@ -4,14 +4,13 @@ namespace Sven\Moretisan\Tests;
 
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
-use Sven\Moretisan\MakeView\ViewCreator;
+use Sven\Moretisan\Components\MakeView\MakeView;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
 abstract class AbstractMakeViewTestCase extends AbstractPackageTestCase
 {
     /**
-     * The ViewCreator instance.
-     * @var \Sven\Moretisan\MakeView\ViewCreator
+     * @var \Sven\Moretisan\MakeView\MakeView
      */
     protected $view;
 
@@ -20,9 +19,9 @@ abstract class AbstractMakeViewTestCase extends AbstractPackageTestCase
      */
     public function setUp()
     {
-        mkdir(__DIR__ . '/assets');
+        mkdir(__DIR__.'/../assets');
 
-        $this->view = new ViewCreator(__DIR__ . '/assets');
+        $this->view = new MakeView(__DIR__.'/../assets');
     }
 
     /**
@@ -30,7 +29,7 @@ abstract class AbstractMakeViewTestCase extends AbstractPackageTestCase
      */
     public function tearDown()
     {
-        $directory = __DIR__ . '/assets';
+        $directory = realpath(__DIR__.'/../assets');
         $iterator = new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST);
 
@@ -39,14 +38,5 @@ abstract class AbstractMakeViewTestCase extends AbstractPackageTestCase
         }
 
         rmdir($directory);
-    }
-
-    /**
-     * Get a new ViewCreator instance.
-     * @return \Sven\Moretisan\ViewCreator
-     */
-    public function getView()
-    {
-        return new ViewCreator(__DIR__ . '/assets');
     }
 }
