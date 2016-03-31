@@ -1,6 +1,6 @@
 <?php
 
-namespace Sven\Moretisan\Tests;
+namespace Sven\Moretisan\Tests\MakeView;
 
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;

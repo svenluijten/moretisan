@@ -15,6 +15,13 @@ class MakeView
     protected $path;
 
     /**
+     * Base path where your views are located.
+     *
+     * @var string
+     */
+    protected $base;
+
+    /**
      * Full path to the file.
      *
      * @var string
@@ -28,7 +35,10 @@ class MakeView
      */
     public function __construct($path)
     {
-        $this->path = realpath($path);
+        $realPath = realpath($path);
+
+        $this->path = $realPath;
+        $this->base = $realPath;
     }
 
     /**
@@ -47,6 +57,40 @@ class MakeView
         $this->createFolders($fragments);
 
         $this->makeFile($filename, $extension);
+
+        return $this;
+    }
+
+    /**
+     * Create a RESTful resource.
+     *
+     * @param  string       $name      The name of the resource.
+     * @param  string|array $verbs     The verbs the resource should include.
+     * @param  string       $extension The extension the files should get.
+     * @return void
+     */
+    public function resource($name, $verbs = null, $extension = '.blade.php')
+    {
+        $types = ['index', 'show', 'edit', 'create'];
+
+        if ( ! is_null($verbs)) {
+            $types = $this->normalizeToArray($verbs, ',');
+        }
+
+        foreach ($types as $type) {
+            $this->clean()->create("$name.$type", $extension);
+        }
+    }
+
+    /**
+     * Set paths back to their defaults.
+     *
+     * @return \Sven\Moretisan\Components\MakeView\MakeView
+     */
+    public function clean()
+    {
+        $this->path = $this->base;
+        $this->file = '';
 
         return $this;
     }
@@ -91,19 +135,25 @@ class MakeView
      */
     protected function appendToFile($content)
     {
-        file_put_contents($this->file, $content,FILE_APPEND);
+        file_put_contents($this->file, $content, FILE_APPEND);
     }
 
     /**
      * Normalize a string to an array.
      *
-     * @param  string $value     The value to normalize.
-     * @param  string $delimiter Delimiter to explode by.
-     * @return array             Normalized array of values.
+     * @param  string|array $value     The value to normalize.
+     * @param  string       $delimiter Delimiter to explode by.
+     * @return array                   Normalized array of values.
      */
     protected function normalizeToArray($value, $delimiter)
     {
-        if (! Str::contains($value, $delimiter)) return [$value];
+        if (is_array($value)) {
+            return $value;
+        }
+
+        if ( ! Str::contains($value, $delimiter)) {
+            return [$value];
+        }
 
         return explode($delimiter, $value);
     }
@@ -134,11 +184,15 @@ class MakeView
      */
     protected function createFolders($folders)
     {
-        if (empty($folders)) return;
+        if (empty($folders)) {
+            return;
+        }
 
-        $path = $this->addToPath( array_pop($folders) );
+        $path = $this->addToPath(array_pop($folders));
 
-        if (! is_dir($path)) mkdir($path);
+        if ( ! is_dir($path)) {
+            mkdir($path);
+        }
 
         return $this->createFolders($folders);
     }
@@ -166,7 +220,7 @@ class MakeView
     {
         $extension = $this->parseExtension($extension);
 
-        $this->file = $this->path . '/' . $filename . $extension;
+        $this->file = $this->path.'/'.$filename.$extension;
 
         if (file_exists($this->file)) {
             throw new FileAlreadyExists("The file at [$this->file] already exists.");

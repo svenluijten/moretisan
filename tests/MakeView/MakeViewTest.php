@@ -107,4 +107,41 @@ class MakeViewTest extends MakeViewTestCase
         $this->view->create('index');
         $this->view->create('index');
     }
+
+    /** @test */
+    public function it_creates_a_resource()
+    {
+        $this->view->resource('products');
+
+        foreach (['index', 'show', 'edit', 'create'] as $verb) {
+            $this->assertTrue(
+                file_exists(__DIR__.'/../assets/products/'.$verb.'.blade.php')
+            );
+        }
+    }
+
+    /** @test */
+    public function it_only_creates_views_for_the_given_verbs()
+    {
+        $this->view->resource('products', 'index,show');
+        $this->view->resource('users', ['index', 'show']);
+
+        foreach (['index', 'show'] as $verb) {
+            $this->assertTrue(
+                file_exists(__DIR__.'/../assets/products/'.$verb.'.blade.php')
+            );
+
+            $this->assertTrue(
+                file_exists(__DIR__.'/../assets/users/'.$verb.'.blade.php')
+            );
+        }
+
+        $this->assertFalse(
+            file_exists(__DIR__.'/../assets/products/edit.blade.php')
+        );
+
+        $this->assertFalse(
+            file_exists(__DIR__.'/../assets/users/edit.blade.php')
+        );
+    }
 }
