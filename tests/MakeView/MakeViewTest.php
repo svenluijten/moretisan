@@ -103,7 +103,7 @@ class MakeViewTest extends AbstractMakeViewTestCase
     /** @test */
     public function it_throws_an_exception_if_file_already_exists()
     {
-        $this->expectException(FileAlreadyExists::class);
+        $this->setExpectedException(FileAlreadyExists::class);
 
         $this->view->create('index');
         $this->view->create('index');
