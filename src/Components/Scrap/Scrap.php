@@ -14,11 +14,7 @@ class Scrap extends FileInteractor
      */
     public function view($name, $extension = '.blade.php')
     {
-        $fragments = $this->normalizeToArray($name, '.');
-
-        $filename = array_pop($fragments);
-
-        $this->createFolders($fragments);
+        $filename = $this->parseName($name);
 
         $this->removeFile($filename, $extension);
 

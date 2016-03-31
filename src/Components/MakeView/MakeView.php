@@ -16,11 +16,7 @@ class MakeView extends FileInteractor
      */
     public function create($name, $extension = '.blade.php')
     {
-        $fragments = $this->normalizeToArray($name, '.');
-
-        $filename = array_pop($fragments);
-
-        $this->createFolders($fragments);
+        $filename = $this->parseName($name);
 
         $this->makeFile($filename, $extension);
 

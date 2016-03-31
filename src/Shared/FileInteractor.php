@@ -172,6 +172,23 @@ class FileInteractor
     }
 
     /**
+     * Prepare the name into a full file path.
+     *
+     * @param  string $name The name to parse.
+     * @return string       Full path to the file.
+     */
+    protected function parseName($name)
+    {
+        $fragments = $this->normalizeToArray($name, '.');
+
+        $filename = array_pop($fragments);
+
+        $this->createFolders($fragments);
+
+        return $filename;
+    }
+
+    /**
      * Normalize the extension so it starts with a period.
      *
      * @param  string $extension The extension to normalize.
