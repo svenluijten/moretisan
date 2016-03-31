@@ -35,8 +35,10 @@ class MakeViewCommand extends Command
      */
     public function handle()
     {
+        $directory = (string) $this->option('directory')
+
         $view = new MakeView(
-            base_path($this->option('directory'))
+            base_path($directory)
         );
 
         $name      = $this->argument('name');

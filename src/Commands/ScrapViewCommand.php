@@ -29,8 +29,10 @@ class ScrapViewCommand extends Command
      */
     public function handle()
     {
+        $directory = (string) $this->option('directory');
+
         $scrap = new Scrap(
-            base_path($this->option('directory'))
+            base_path($directory)
         );
 
         $name = $this->argument('name');
