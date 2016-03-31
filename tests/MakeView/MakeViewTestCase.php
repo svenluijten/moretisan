@@ -7,7 +7,7 @@ use RecursiveDirectoryIterator;
 use Sven\Moretisan\Components\MakeView\MakeView;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
-abstract class AbstractMakeViewTestCase extends AbstractPackageTestCase
+abstract class MakeViewTestCase extends AbstractPackageTestCase
 {
     /**
      * @var \Sven\Moretisan\MakeView\MakeView

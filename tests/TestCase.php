@@ -5,7 +5,7 @@ namespace Sven\Moretisan\Tests;
 use Sven\Moretisan\MoretisanServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
 
-abstract class AbstractTestCase extends AbstractPackageTestCase
+abstract class TestCase extends AbstractPackageTestCase
 {
     /**
      * Get the service provider class.

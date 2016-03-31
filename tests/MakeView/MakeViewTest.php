@@ -3,9 +3,8 @@
 namespace Sven\Moretisan\Tests\MakeView;
 
 use Sven\Moretisan\Exceptions\FileAlreadyExists;
-use Sven\Moretisan\Tests\AbstractMakeViewTestCase;
 
-class MakeViewTest extends AbstractMakeViewTestCase
+class MakeViewTest extends MakeViewTestCase
 {
     /** @test */
     public function it_creates_a_view()
