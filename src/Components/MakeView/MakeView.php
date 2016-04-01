@@ -62,7 +62,7 @@ class MakeView extends FileInteractor
     /**
      * Add sections to the file.
      *
-     * @param  string $sections Comma-separated list of sections to add.
+     * @param  string|array $sections Array or comma-separated list of sections.
      * @return \Sven\Moretisan\Components\MakeView\MakeView
      */
     public function sections($sections)

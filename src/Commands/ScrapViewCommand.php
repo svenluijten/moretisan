@@ -35,9 +35,9 @@ class ScrapViewCommand extends Command
             base_path($directory)
         );
 
-        $name = $this->argument('name');
+        $name = (string) $this->argument('name');
 
-        if ( ! $this->confirm("Are you sure you want to scrap the view [$name]? [Y|N]")) {
+        if ( ! $this->confirm("Are you sure you want to scrap the view [$name]?")) {
             return $this->info("Okay, no harm done!");
         }
 

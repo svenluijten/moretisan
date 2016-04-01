@@ -9,8 +9,8 @@ class Scrap extends FileInteractor
     /**
      * Scrap an existing view file.
      *
-     * @param  string $name Name of the view to scrap
-     * @return \Sven\Moretisan\Components\Scrap
+     * @param  string|array $name Name of the view to scrap
+     * @return \Sven\Moretisan\Components\Scrap\Scrap
      */
     public function view($name, $extension = '.blade.php')
     {

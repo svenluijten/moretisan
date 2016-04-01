@@ -41,11 +41,11 @@ class MakeViewCommand extends Command
             base_path($directory)
         );
 
-        $name      = $this->argument('name');
-        $extension = $this->option('extension');
-        $extend    = $this->option('extends');
+        $name      = (string) $this->argument('name');
+        $extension = (string) $this->option('extension');
+        $extend    = (string) $this->option('extends');
         $sections  = $this->option('sections');
-        $resource  = $this->option('resource');
+        $resource  = (string) $this->option('resource');
         $verbs     = $this->option('verbs');
 
         try {

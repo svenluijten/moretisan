@@ -87,6 +87,18 @@ class MakeViewTest extends MakeViewTestCase
     }
 
     /** @test */
+    public function it_accepts_an_array_of_sections()
+    {
+        $this->view->create('about')->sections(['foo', 'bar']);
+
+        $this->assertEquals(
+            PHP_EOL.'@section(\'foo\')'.PHP_EOL.PHP_EOL.'@endsection'.PHP_EOL.
+            PHP_EOL.'@section(\'bar\')'.PHP_EOL.PHP_EOL.'@endsection'.PHP_EOL,
+            file_get_contents(__DIR__.'/../assets/about.blade.php')
+        );
+    }
+
+    /** @test */
     public function it_extends_a_view_and_adds_sections()
     {
         $this->view->create('index')->extend('foo')->sections('bar,baz');
