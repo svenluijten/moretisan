@@ -3,7 +3,7 @@
 namespace Sven\Moretisan\Commands;
 
 use Illuminate\Console\Command;
-use Sven\Moretisan\MakeView\MakeView;
+use Sven\Moretisan\Components\MakeView\MakeView;
 
 class MakeViewCommand extends Command
 {

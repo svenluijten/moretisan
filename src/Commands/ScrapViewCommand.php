@@ -3,7 +3,7 @@
 namespace Sven\Moretisan\Commands;
 
 use Illuminate\Console\Command;
-use Sven\Moretisan\Components\Scrap;
+use Sven\Moretisan\Components\Scrap\Scrap;
 
 class ScrapViewCommand extends Command
 {
