@@ -174,8 +174,8 @@ class FileInteractor
     /**
      * Prepare the name into a full file path.
      *
-     * @param  string $name The name to parse.
-     * @return string       Full path to the file.
+     * @param  string|array $name The name to parse.
+     * @return string             Full path to the file.
      */
     protected function parseName($name)
     {
