@@ -52,6 +52,10 @@ class MakeView extends FileInteractor
      */
     public function extend($name)
     {
+        if (empty($name)) {
+            return $this;
+        }
+
         $this->appendToFile(
             $this->getStub('extend', [$name])
         );
@@ -67,6 +71,10 @@ class MakeView extends FileInteractor
      */
     public function sections($sections)
     {
+        if (empty($sections)) {
+            return $this;
+        }
+
         foreach ($this->normalizeToArray($sections, ',') as $section) {
             $stub = $this->getStub('section', [$section]);
 

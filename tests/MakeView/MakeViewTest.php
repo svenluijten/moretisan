@@ -112,6 +112,23 @@ class MakeViewTest extends MakeViewTestCase
     }
 
     /** @test */
+    public function it_creates_empty_view_if_extend_or_sections_are_empty()
+    {
+        $this->view->create('foo')->extend('');
+        $this->view->create('bar')->sections('');
+
+        $this->assertEquals(
+            '',
+            file_get_contents(__DIR__.'/../assets/foo.blade.php')
+        );
+
+        $this->assertEquals(
+            '',
+            file_get_contents(__DIR__.'/../assets/bar.blade.php')
+        );
+    }
+
+    /** @test */
     public function it_throws_an_exception_if_file_already_exists()
     {
         $this->setExpectedException(FileAlreadyExists::class);
