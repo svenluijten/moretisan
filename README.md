@@ -10,6 +10,8 @@
 [![Code Quality][ico-quality]][link-quality]
 [![SensioLabs Insight][ico-insight]][link-insight]
 
+> This package is deprecated! Use [sven/artisan-view](https://github.com/svenluijten/artisan-view) instead!
+
 This package adds helpful artisan commands to your Laravel projects. More are
 constantly being added!
 
